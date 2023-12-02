@@ -80,7 +80,7 @@ public abstract class Jet {
 
 	@Override
 	public String toString() {
-		return "Jet " + getModel() + " is traveling at a speed of " + getSpeed() + " MPH, which is " + getSpeedInMach()
+		return "Jet " + getModel() + " travels at a speed of " + getSpeed() + " MPH, which is " + getSpeedInMach()
 				+ " in Mach. It has a range of " + getRange() + " and was purchsed for " + getPrice();
 	}
 
