@@ -1,5 +1,6 @@
 package com.skilldistillery.jets;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class JetsApplication {
@@ -42,39 +43,123 @@ public class JetsApplication {
 	}
 
 	private void executeUserResponse(int choice) {
+		ArrayList<Jet> jets = airField.getJets();
 		switch (choice) {
 		case 1:
-			//TODO get toString() to print getSimpleName for each instanceof Jet/FighterJet/CargoPlane
 			System.out.println(airField);
 			break;
 		case 2:
-			// TODO Fly all jets
+			for (Jet jet : jets) {
+				jet.fly();
+			}
 			break;
 		case 3:
-			// TODO find fastest jet
+			Jet fastestJet = jets.get(0);
+			for (Jet jet : jets) {
+				if (jet.getSpeed() > fastestJet.getSpeed()) {
+					fastestJet = jet;
+				}
+			}
+			System.out.println("The fastest Jet is: " + fastestJet);
 			break;
 		case 4:
-			// TODO find jet with longest range
+			Jet longestRangeJet = jets.get(0);
+			for (Jet jet : jets) {
+				if (jet.getRange() > longestRangeJet.getRange()) {
+					longestRangeJet = jet;
+				}
+			}
+			System.out.println("The Jet with the longest range is: " + longestRangeJet);
 			break;
 		case 5:
-			// TODO load all cargo planes
+			for (Jet jet : jets) {
+				if (jet instanceof CargoPlane) {
+					((CargoPlane) jet).loadCargo();
+				}
+			}
 			break;
 		case 6:
-			// TODO fighter jets fight
+			for (Jet jet : jets) {
+				if (jet instanceof FighterJet) {
+					((FighterJet) jet).fight();
+				}
+			}
 			break;
 		case 7:
-			// TODO add a jet to the fleet
+			addJetMenu();
 			break;
 		case 8:
-			// TODO remove a jet from the fleet
+			removeJetMenu();
 			break;
 		case 9:
 			System.out.println("Goodbye! Thank you for flying with Lockheed Martin and Airbus!");
-			System.exit(0);
+			return;
 		default:
 			System.out.println("Option not recognized. Please input a valid choice of 1-9.");
 			break;
 		}
+	}
+
+	private void addJetMenu() {
+		
+		System.out.println("Please enter a numerical response for what kind of Jet you would like to add:");
+		System.out.println("1. Fighter Jet");
+		System.out.println("2. Cargo Plane");
+		System.out.println("3. Passenger Jet");
+		int choice = keyboard.nextInt();
+		keyboard.nextLine();
+		
+		String model = "";
+		double speed = 0;
+		int range = 0;
+		long price = 0;
+		
+		if (choice > 0 && choice <= 3) {
+			System.out.println("What is the model of the Jet?");
+			model = keyboard.nextLine();
+			System.out.println("What is the top speed of the Jet?");
+			speed = keyboard.nextDouble();
+			System.out.println("What is the range of the Jet?");
+			range = keyboard.nextInt();
+			System.out.println("How much did the Jet cost?");
+			price = keyboard.nextLong();
+		}
+		
+		switch (choice) {
+		case 1:
+			FighterJet fighterJet = new FighterJet(model, speed, range, price);
+			if (airField.addJet(fighterJet)) {
+				System.out.println("Your Fighter Jet was successfully added!");
+			} else {
+				System.out.println("There was an error adding your Fighter Jet. Please try again.");
+			}
+			break;
+		case 2:
+			CargoPlane cargoPlane = new CargoPlane(model, speed, range, price);
+			if (airField.addJet(cargoPlane)) {
+				System.out.println("Your Cargo Plane was successfully added!");
+			} else {
+				System.out.println("There was an error adding your Cargo Plane. Please try again.");
+			}
+			break;
+		case 3:
+			PassengerJet passengerJet = new PassengerJet(model, speed, range, price);
+			if (airField.addJet(passengerJet)) {
+				System.out.println("Your Passenger Jet was successfully added!");
+			} else {
+				System.out.println("There was an error adding your Passenger Jet. Please try again.");
+			}
+			break;
+		default:
+			System.out.println("Input not recognized. Please try again.");
+			break;
+		}
+	}
+	
+	public void removeJetMenu() {
+		System.out.println("Please choose which jet you would like to remove by using an index between 0 and " + (airField.getJets().size() - 1));
+		int index = keyboard.nextInt();
+		System.out.println("You have removed " + airField.removeJet(index));
 	}
 
 	private void cleanUp() {

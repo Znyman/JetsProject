@@ -49,7 +49,7 @@ public abstract class Jet {
 	}
 
 	public void fly() {
-		System.out.println(this + " can fly for " + calculateHowLongCanFly() + " hours before it runs out of fuel.");
+		System.out.println(this + " It can fly for " + calculateHowLongCanFly() + " hours before it runs out of fuel.");
 	}
 
 	public double calculateHowLongCanFly() {
@@ -80,8 +80,8 @@ public abstract class Jet {
 
 	@Override
 	public String toString() {
-		return "Jet " + getModel() + " travels at a speed of " + getSpeed() + " MPH, which is " + getSpeedInMach()
-				+ " in Mach. It has a range of " + getRange() + " and was purchsed for " + getPrice();
+		return this.getClass().getSimpleName() + " " + getModel() + " travels at a speed of " + getSpeed() + " MPH, which is " + getSpeedInMach()
+				+ " in Mach. It has a range of " + getRange() + " and was purchsed for " + getPrice() + ".";
 	}
 
 }

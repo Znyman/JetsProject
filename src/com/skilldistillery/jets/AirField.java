@@ -2,7 +2,6 @@ package com.skilldistillery.jets;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import java.lang.*;
 
 public class AirField {
 	
@@ -16,6 +15,19 @@ public class AirField {
 		jets.add(new CargoPlane("C-5M Super Galaxy", 531, 5524, 100000000));
 		jets.add(new PassengerJet("Airbus A350", 652, 9300, 385000000));
 		
+	}
+
+	public ArrayList<Jet> getJets() {
+		return jets;
+	}
+	
+	public boolean addJet(Jet jet) {
+		jets.add(jet);
+		return true;
+	}
+	
+	public Jet removeJet(int index) {
+		return jets.remove(index);
 	}
 
 	@Override
@@ -35,7 +47,6 @@ public class AirField {
 
 	@Override
 	public String toString() {
-		//TODO get toString() to print getSimpleName for each instanceof Jet/FighterJet/CargoPlane
 		String jetsNewLine = "";
 		for (Jet jet : jets) {
 			jetsNewLine += jet.toString() + "\n";
