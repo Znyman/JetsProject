@@ -16,11 +16,11 @@ public class AirField {
 		jets.add(new PassengerJet("Airbus A350", 652, 9300, 385000000));
 		
 	}
-
-	public ArrayList<Jet> getJets() {
-		return jets;
-	}
 	
+	public int getAirFieldSize() {
+		return jets.size();
+	}
+
 	public boolean addJet(Jet jet) {
 		jets.add(jet);
 		return true;

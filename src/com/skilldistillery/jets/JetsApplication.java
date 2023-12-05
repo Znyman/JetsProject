@@ -134,7 +134,7 @@ public class JetsApplication {
 
 	public void removeJetMenu() {
 		System.out.println("Please choose which jet you would like to remove by using an index between 0 and "
-				+ (airField.getJets().size() - 1));
+				+ (airField.getAirFieldSize() - 1));
 		int index = keyboard.nextInt();
 		System.out.println("You have removed " + airField.removeJet(index));
 	}
