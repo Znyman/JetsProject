@@ -29,6 +29,48 @@ public class AirField {
 	public Jet removeJet(int index) {
 		return jets.remove(index);
 	}
+	
+	public void flyJets() {
+		for (Jet jet : jets) {
+			jet.fly();
+		}
+	}
+	
+	public Jet findFastestJet() {
+		Jet fastestJet = jets.get(0);
+		for (Jet jet : jets) {
+			if (jet.getSpeed() > fastestJet.getSpeed()) {
+				fastestJet = jet;
+			}
+		}
+		return fastestJet;
+	}
+	
+	public Jet findLongestRangeJet() {
+		Jet longestRangeJet = jets.get(0);
+		for (Jet jet : jets) {
+			if (jet.getRange() > longestRangeJet.getRange()) {
+				longestRangeJet = jet;
+			}
+		}
+		return longestRangeJet;
+	}
+	
+	public void loadAllCargoPlanes() {
+		for (Jet jet : jets) {
+			if (jet instanceof CargoPlane) {
+				((CargoPlane) jet).loadCargo();
+			}
+		}
+	}
+	
+	public void dogFight() {
+		for (Jet jet : jets) {
+			if (jet instanceof FighterJet) {
+				((FighterJet) jet).fight();
+			}
+		}
+	}
 
 	@Override
 	public int hashCode() {

@@ -1,6 +1,5 @@
 package com.skilldistillery.jets;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class JetsApplication {
@@ -43,47 +42,24 @@ public class JetsApplication {
 	}
 
 	private void executeUserResponse(int choice) {
-		ArrayList<Jet> jets = airField.getJets();
 		switch (choice) {
 		case 1:
 			System.out.println(airField);
 			break;
 		case 2:
-			for (Jet jet : jets) {
-				jet.fly();
-			}
+			airField.flyJets();
 			break;
 		case 3:
-			Jet fastestJet = jets.get(0);
-			for (Jet jet : jets) {
-				if (jet.getSpeed() > fastestJet.getSpeed()) {
-					fastestJet = jet;
-				}
-			}
-			System.out.println("The fastest Jet is: " + fastestJet);
+			System.out.println(airField.findFastestJet());
 			break;
 		case 4:
-			Jet longestRangeJet = jets.get(0);
-			for (Jet jet : jets) {
-				if (jet.getRange() > longestRangeJet.getRange()) {
-					longestRangeJet = jet;
-				}
-			}
-			System.out.println("The Jet with the longest range is: " + longestRangeJet);
+			System.out.println(airField.findLongestRangeJet());
 			break;
 		case 5:
-			for (Jet jet : jets) {
-				if (jet instanceof CargoPlane) {
-					((CargoPlane) jet).loadCargo();
-				}
-			}
+			airField.loadAllCargoPlanes();
 			break;
 		case 6:
-			for (Jet jet : jets) {
-				if (jet instanceof FighterJet) {
-					((FighterJet) jet).fight();
-				}
-			}
+			airField.dogFight();
 			break;
 		case 7:
 			addJetMenu();
@@ -101,19 +77,19 @@ public class JetsApplication {
 	}
 
 	private void addJetMenu() {
-		
+
 		System.out.println("Please enter a numerical response for what kind of Jet you would like to add:");
 		System.out.println("1. Fighter Jet");
 		System.out.println("2. Cargo Plane");
 		System.out.println("3. Passenger Jet");
 		int choice = keyboard.nextInt();
 		keyboard.nextLine();
-		
+
 		String model = "";
 		double speed = 0;
 		int range = 0;
 		long price = 0;
-		
+
 		if (choice > 0 && choice <= 3) {
 			System.out.println("What is the model of the Jet?");
 			model = keyboard.nextLine();
@@ -124,7 +100,7 @@ public class JetsApplication {
 			System.out.println("How much did the Jet cost?");
 			price = keyboard.nextLong();
 		}
-		
+
 		switch (choice) {
 		case 1:
 			FighterJet fighterJet = new FighterJet(model, speed, range, price);
@@ -155,9 +131,10 @@ public class JetsApplication {
 			break;
 		}
 	}
-	
+
 	public void removeJetMenu() {
-		System.out.println("Please choose which jet you would like to remove by using an index between 0 and " + (airField.getJets().size() - 1));
+		System.out.println("Please choose which jet you would like to remove by using an index between 0 and "
+				+ (airField.getJets().size() - 1));
 		int index = keyboard.nextInt();
 		System.out.println("You have removed " + airField.removeJet(index));
 	}
