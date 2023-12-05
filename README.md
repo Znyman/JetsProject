@@ -18,4 +18,16 @@ Once starting the program, you can choose to:
 - Remove a jet from the fleet by inputting its index
 
 ## Technologies Used
-The program consists of several methods, each with various return types. Other simple logic, data structures, and OOP concepts were included in the program such as `if`, `for each`, `while`, `switch`, `ArrayList`, `interfaces`, `abstract class`, various private attribute declarations with setters and getters, a `toString()` method, print statements, and a Scanner.
+The program consists of several methods, each with various return types, various private attribute declarations with setters and getters, a `toString()` method, print statements, and a Scanner.
+
+Other simple logic, data structures, and OOP concepts were included in the program such as:
+- `abstraction`
+- `encapsulation`
+- `inheritance`
+- `polymorphism`
+- `interfaces`
+- `if`
+- `for each`
+- `while`
+- `switch`
+- `ArrayList`
